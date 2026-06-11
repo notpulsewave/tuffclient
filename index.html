@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseWave | Backup Activated</title>
+  <style>
+    :root {
+      --bg-dark: #000000;
+      --bg-panel: #0a0a0a;
+      --text: #ffffff;
+      --accent: #ff0000;
+      --accent-dark: #8b0000;
+    }
 
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #050505, #1a0000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(10, 10, 10, 0.95);
+      border: 1px solid rgba(255, 0, 0, 0.2);
+      box-shadow: 0 30px 80px rgba(255, 0, 0, 0.15);
+      text-align: center;
+      padding: 40px;
+    }
+
+    .topbar {
+      height: 6px;
+      background: linear-gradient(to right, #ff0000, #8b0000);
+      margin-bottom: 30px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 0 0 10px;
+      color: #ff4d4d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p {
+      color: #aaaaaa;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-weight: 700;
+      padding: 14px 40px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      border: none;
+      font-size: 1rem;
+      min-width: 150px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #ff0000;
+      color: #ffffff;
+      box-shadow: 0 8px 0 #8b0000;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #ff1a1a;
+    }
+
+    /* Ripple Effect Styles */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(0);
+      animation: ripple-anim 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple-anim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="topbar"></div>
+    
+    <h1>Unable to continue with GitHub</h1>
+    <p>Netlify backup activated.<br>Please proceed to the alternative host.</p>
+
+    <a href="https://tuffnetclient.netlify.app" class="btn" id="continue-btn">OK</a>
+  </div>
+
+  <script>
+    // Ripple Effect Logic
+    const btn = document.getElementById('continue-btn');
+
+    btn.addEventListener('mouseenter', function() {
+      // Create ripple element
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      
+      // Get button dimensions
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      
+      // Set size and position to center of button
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${rect.width / 2 - size / 2}px`;
+      ripple.style.top = `${rect.height / 2 - size / 2}px`;
+      
+      // Append to button
+      btn.appendChild(ripple);
+      
+      // Remove ripple after animation ends
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  </script>
+</body>
+</html>
